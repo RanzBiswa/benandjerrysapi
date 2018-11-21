@@ -1,0 +1,573 @@
+swagger: "2.0"
+info:
+  description: |
+    This is the definition of APIs for Ice Creams functionality for Zalora.
+  version: "1.0.0"
+  title: Ben & Jerry Ice Cream APIs for Zalora
+host: 00.00.000.00:0000
+basePath: /v1
+schemes:
+- http
+paths:
+  /icecreams/lookup:
+    get:
+      tags:
+      - ice creams
+      summary: Retrieves all ice creams
+      description: Retrieves all ice creams
+      operationId: getIceCreams
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/IceCreamResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+  /icecreams/{productid}:
+    get:
+      tags:
+      - ice creams
+      summary: Retrieves all ice creams for a particular product id
+      description: Retrieves all ice creams for a particular product id
+      operationId: getIceCream
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: path
+        name: productid
+        description: Product Id of an ice cream. Max Length allowed is 4
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/IceCreamResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+  /icecreams/destroy/{productid}:
+    get:
+      tags:
+      - ice creams
+      summary: Deletes a ice cream based on product id
+      description: Deletes a ice cream based on product id
+      operationId: destroyIceCream
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: path
+        name: productid
+        description: Product Id of an ice cream. Max Length allowed is 4
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+  /icecreams/create:
+    post:
+      tags:
+      - ice creams
+      summary: Creates ice cream data
+      description: Creates ice cream related data
+      operationId: createIceCream
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: |
+          Request body.
+          Below are the fields that needs to be passed.
+          name, image_closed, image_open, description, story, sourcing_values, ingredients, allergy_info, dietary_certifications, productId
+        required: true
+        schema:
+          $ref: "#/definitions/IceCreamRequest"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+  /icecreams/update/{productid}:
+    post:
+      tags:
+      - ice creams
+      summary: Updates a particular ice cream based on the product Id
+      description:  Updates a particular ice cream based on the product Id
+      operationId: updateIceCream
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: path
+        name: productid
+        description: Product Id of an ice cream. Max Length allowed is 4
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: |
+          Request body.
+          Below are the fields that needs to be passed.
+          name, image_closed, image_open, description, story, sourcing_values, ingredients, allergy_info, dietary_certifications
+        required: true
+        schema:
+          $ref: "#/definitions/IceCreamUpdateRequest"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+  /icecreams/{searchvalue}/search:
+    get:
+      tags:
+      - ice creams
+      summary: Searches the ice creams based on search value
+      description: Searches the ice creams based on search value. Accpeted search value are name and description
+      operationId: searchIceCreams
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: path
+        name: searchvalue
+        description: |
+          Search value.
+          Valid search values can be a name or a description of a ice cream.
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/IceCreamResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+securityDefinitions:
+  Authorization:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  IceCreamResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        description: |
+          Status code
+      message:
+        type: string
+        description: |
+          Status message
+      count:
+        type: integer
+        description: |
+          Count
+      iceCreams:
+        type: array
+        description: |
+          Ice Cream Data.
+          Valid when searched for all icecreams or icecreams by product ID.
+        items:
+          $ref: "#/definitions/IceCream"
+  IceCream:
+    type: object
+    properties:
+      name:
+        type: string
+      image_closed:
+        type: string
+      image_open:
+        type: string
+      description:
+        type: string
+      story:
+        type: integer
+      sourcing_values:
+        type: array
+        items:
+          type: string
+          description:
+            Sourcing Values
+      ingredients:
+        type: array
+        items:
+          type: string
+          description:
+            Ingredients
+      allergy_info:
+        type: string
+      dietary_certifications:
+        type: string
+      productId:
+        type: string
+  IceCreamRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        description:  |
+          Name of the ice cream
+      image_closed:
+        type: string
+        description:  |
+
+          Closed Image Location
+      image_open:
+        type: string
+        description:  |
+          Open Image location
+      description:
+        type: string
+        description:  |
+
+          Description relates to the description of the ice cream
+      story:
+        type: integer
+        description:  |
+          Story.
+      sourcing_values:
+        type: array
+        items:
+          type: string
+          description:  |
+            Sourcing Values.
+      ingredients:
+        type: array
+        items:
+          type: string
+          description:  |
+            Ingredients. Tells what ingredient is needed for the ice cream.
+      allergy_info:
+        type: string
+        description:  |
+          Allergy related info. Max length is 1000.
+      dietary_certifications:
+        type: string
+        description:  |
+          Dietary Certifications related info. Max length is 1000.
+      productId:
+        type: string
+        description:  |
+          *Required. Product ID. Max length is 4
+  IceCreamUpdateRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        description:  |
+          Name of the ice cream
+      image_closed:
+        type: string
+        description:  |
+          Closed Image Location
+      image_open:
+        type: string
+        description:  |
+          Open Image location
+      description:
+        type: string
+        description:  |
+          Description relates to the description of the ice cream
+      story:
+        type: integer
+        description:  |
+          Story.
+      sourcing_values:
+        type: array
+        items:
+          type: string
+          description:  |
+            Sourcing Values.
+      ingredients:
+        type: array
+        items:
+          type: string
+          description:  |
+            Ingredients. Tells what ingredient is needed for the ice cream.
+      allergy_info:
+        type: string
+        description:  |
+          Allergy related info. Max length is 1000.
+      dietary_certifications:
+        type: string
+        description:  |
+          Dietary Certifications related info. Max length is 1000.
+  SuccessResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+  ErrorResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int64
+      text:
+        type: string
+      validations:
+        type: array
+        items:
+          $ref: "#/definitions/Validation"
+  Validation:
+    type: object
+    properties:
+      error:
+        type: string
