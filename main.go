@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/zalora_icecream/resources/token"
 	"net/http"
 
 	"github.com/zalora_icecream/resources/icecreams"
@@ -47,5 +48,6 @@ func main() {
 //APIHandler ...
 type APIHandler struct {
 	//resource references
-	rsrc icecreams.IceCreamInterface
+	rsrc      icecreams.IceCreamInterface
+	tokenRsrc token.Token
 }

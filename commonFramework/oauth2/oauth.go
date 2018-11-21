@@ -1,11 +1,6 @@
 package oauth2
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
-
-	"github.com/zalora_icecream/commonFramework/external/code.google.com/p/go-uuid/uuid"
 	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
 )
 
@@ -58,6 +53,7 @@ func SetRedisTokenCache(p *redis.Pool) error {
 	return nil
 }
 
+/*
 //AuthToken Used to retreive a token from the data store
 func AuthToken(tokenString string) (AccessToken, error) {
 	var token AccessToken
@@ -125,54 +121,4 @@ func RequestToken(clientID string, grantType string, securityLevel int, hitsPerM
 	return tokenResponse, nil
 }
 
-//RefreshToken Used to create a new Token
-func RefreshToken(clientID string, tokenString string, grantType string, securityLevel int, hitsPerMinute int64, expiry int64) (TokenResponse, error) {
-	var tokenResponse TokenResponse
-	var returnError error
-
-	if !connectionSet {
-		returnError = errors.New("No redis token cache established")
-	} else {
-		var token AccessToken
-		conn := pool.Get()
-		defer conn.Close()
-		tokenItem, err := redis.Bytes(conn.Do("GET", getAccessTokenKey(tokenString)))
-		if err != nil {
-			returnError = errors.New("token not found or long expired")
-		} else {
-			var t AccessToken
-			err := json.Unmarshal(tokenItem, &t)
-			if err != nil {
-				returnError = errors.New("token not found or long expired")
-			} else {
-				token = t
-				//add a buffer to leave it in Redis after it has expired so they have time to refresh
-				expirationTime := expiry + redisExpiryBuffer
-				accessToken := AccessToken{token.Token, clientID, grantType, expirationTime, securityLevel, hitsPerMinute}
-				if bytes, err := json.Marshal(accessToken); err != nil {
-					returnError = err
-				} else {
-					// Add the item to redis, if the key does not already exist
-					_, err := redis.Bytes(conn.Do("SET", getAccessTokenKey(token.Token), bytes))
-					if err != nil {
-						returnError = err
-					} else {
-						if _, err := redis.Int(conn.Do("EXPIRE", getAccessTokenKey(token.Token), expirationTime)); err != nil {
-							returnError = err
-						}
-					}
-				}
-			}
-
-			if returnError == nil {
-				tokenResponse = TokenResponse{token.Token, "Bearer", fmt.Sprintf("%v", expiry)}
-			}
-		}
-	}
-
-	return tokenResponse, returnError
-}
-
-func getAccessTokenKey(token string) string {
-	return token + ":OAuthAccessToken"
-}
+*/

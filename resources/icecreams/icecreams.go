@@ -11,12 +11,6 @@ import (
 // IceCream Models ice Cream Resource
 type IceCream struct{}
 
-// Person Models the person struct
-type Person struct {
-	id   int
-	name string
-}
-
 // ReturnIceCreams retrieves ice cream details
 func (ba IceCream) ReturnIceCreams(
 	baReq m.IceCreamRequest,

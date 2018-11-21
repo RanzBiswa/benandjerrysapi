@@ -27,7 +27,7 @@ func init() {
 		Pattern:       "/v1/icecreams/lookup",
 		HandlerFunc:   apiHndlr.GetIceCreams,
 		SecurityLevel: 0,
-		Authenticate:  false,
+		Authenticate:  true,
 		SkipLog:       false,
 	}
 
@@ -39,7 +39,7 @@ func init() {
 		Pattern:       "/v1/icecreams/{productid}",
 		HandlerFunc:   apiHndlr.GetIceCream,
 		SecurityLevel: 0,
-		Authenticate:  false,
+		Authenticate:  true,
 		SkipLog:       false,
 	}
 	routers.RouteList = append(routers.RouteList, route)
@@ -50,7 +50,7 @@ func init() {
 		Pattern:       "/v1/icecreams/destroy/{productid}",
 		HandlerFunc:   apiHndlr.DestroyIceCream,
 		SecurityLevel: 0,
-		Authenticate:  false,
+		Authenticate:  true,
 		SkipLog:       false,
 	}
 	routers.RouteList = append(routers.RouteList, route)
@@ -61,7 +61,7 @@ func init() {
 		Pattern:       "/v1/icecreams/update/{productid}",
 		HandlerFunc:   apiHndlr.UpdateIceCreams,
 		SecurityLevel: 0,
-		Authenticate:  false,
+		Authenticate:  true,
 		SkipLog:       false,
 	}
 	routers.RouteList = append(routers.RouteList, route)
@@ -72,7 +72,7 @@ func init() {
 		Pattern:       "/v1/icecreams/create",
 		HandlerFunc:   apiHndlr.InsertIceCream,
 		SecurityLevel: 0,
-		Authenticate:  false,
+		Authenticate:  true,
 		SkipLog:       false,
 	}
 	routers.RouteList = append(routers.RouteList, route)
@@ -83,7 +83,7 @@ func init() {
 		Pattern:       "/v1/icecreams/{searchvalue}/search",
 		HandlerFunc:   apiHndlr.SearchIceCreams,
 		SecurityLevel: 0,
-		Authenticate:  false,
+		Authenticate:  true,
 		SkipLog:       false,
 	}
 	routers.RouteList = append(routers.RouteList, route)

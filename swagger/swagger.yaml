@@ -4,7 +4,7 @@ info:
     This is the definition of APIs for Ice Creams functionality for Zalora.
   version: "1.0.0"
   title: Ben & Jerry Ice Cream APIs for Zalora
-host: 00.00.000.00:0000
+host: 00.00.0.00:0000
 basePath: /v1
 schemes:
 - http
@@ -36,7 +36,7 @@ paths:
         "400":
           description: Invalid Request
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequestResponse"
         "401":
           description: Unauthorized
           schema:
@@ -99,7 +99,7 @@ paths:
         "400":
           description: Invalid Request
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequestResponse"
         "401":
           description: Unauthorized
           schema:
@@ -162,7 +162,7 @@ paths:
         "400":
           description: Invalid Request
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequestResponse"
         "401":
           description: Unauthorized
           schema:
@@ -229,7 +229,7 @@ paths:
         "400":
           description: Invalid Request
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequestResponse"
         "401":
           description: Unauthorized
           schema:
@@ -301,7 +301,7 @@ paths:
         "400":
           description: Invalid Request
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequestResponse"
         "401":
           description: Unauthorized
           schema:
@@ -366,7 +366,76 @@ paths:
         "400":
           description: Invalid Request
           schema:
+            $ref: "#/definitions/BadRequestResponse"
+        "401":
+          description: Unauthorized
+          schema:
             $ref: "#/definitions/ErrorResponse"
+        "403":
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "404":
+          description: Resource not found/null/empty
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "429":
+          description: "Too Many Requests"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            X-Rate-Limit-Remaining:
+              type: "string"
+            X-Rate-Limit-Limit:
+              type: "string"
+            X-Rate-Limit-Reset:
+              type: "string"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      security:
+      - Authorization: []
+  /authorize/token:
+    get:
+      tags:
+      - auth token
+      summary: Retrieves the access token for a particular user id and password
+      description: Retrieves the access token for a particular user id and password
+      operationId: getToken
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: query
+        name: id
+        description: User ID.
+        required: true
+        type: string
+      - in: query
+        name: password
+        description: Password
+        required: true
+        type: string
+        format: "password"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/TokenResponse"
+          headers:
+            Forwarded-Status:
+              description: |
+                Forwarded status code.
+              type: integer
+            Forwarded-Message:
+              description: |
+                Forwarded status message.
+              type: string
+        "400":
+          description: Invalid Request
+          schema:
+            $ref: "#/definitions/BadRequestResponse"
         "401":
           description: Unauthorized
           schema:
@@ -552,9 +621,30 @@ definitions:
     properties:
       code:
         type: integer
+        description: |
+          Status Code
+      message:
+        type: string
+        description: |
+          Status Message
+  TokenResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+      accessToken:
+        type: string
       message:
         type: string
   ErrorResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int64
+      text:
+        type: string
+  BadRequestResponse:
     type: object
     properties:
       code:

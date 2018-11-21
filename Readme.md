@@ -1,4 +1,5 @@
-#Read me
+# Ben & Jerry's API
+
 
 Few things need to be set up before testing the APIs
 1. DB Server needs to be set up.
@@ -8,15 +9,34 @@ Few things need to be set up before testing the APIs
 2. Go API server needs to be set up..
    -  Run the goapi.exe as a service
 
+### Installation Steps
+Open swagger/swagger.yaml file in editor.swagger.io .
 
-Installation of Mongo DB in Windows
-1. Go To the folder where your mongo is installed.
-   For eg: cd D:\mongodb-win32-x86_64-2008plus-ssl-4.0.4
-2. Mongo DB requires a data directory to store all data.
-   Create the folder by writing "md data"
-3. Create the path by using   "mongod.exe --dbpath D:\\DATA". This starts the mongo db server
-4. Once Step 3 is completed successfully. Open a new command prompt shell and write "mongo.exe" to connect the mongo db server
-5. Eureka :). We are all done with the database set up.
+Click on the Authenticate button , a pop up opens asking you enter a value.
 
+OOPS !. What is the value? ..... Thinking !!!
 
+Go to bin folder, Check for the config file, and set the port number(For now, let it point to localhost)
+
+Double Click the icecream.exe file. This opens the cmd prompt. Hurry :). Server is started.
+
+In editor.swagger.io, Call the v1/authorize/token API.
+
+Enter user id and password as "biswa" and "iamcoming" respectively. This would return a access token.This is maintained in clients.json file
+
+Hurray :). We are almost there.
+
+Go to Step 2. Authorize yourself with the below string . For eg: Access token is "xxxxxxxxx", then kindly enter "Bearer xxxxxxxxx" . Yes, you are in now
+
+Now, you are authorized to access the APIs .
+
+While trying any API, Press Execute Button. OOPS !. 500 Internal Server Error.
+
+No more issues please. What did we missed? Thinking ...........
+
+OOPS !. Where is my database set up?
+
+Refer ReadMeDB.md for database set up.
+
+Once the set up is done, you are all set to use the APIs.
 
