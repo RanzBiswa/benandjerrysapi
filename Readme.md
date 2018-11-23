@@ -12,7 +12,7 @@ Few things need to be set up before testing the APIs
 2.  GO APIs needs to be hosted. Either of two options mentioned below needs to be implemented.
     -  Either Go API server needs to be set up using the file "benandjerrysapi/bin/benandjerrysapi.exe" 
        OR 
-    -  Run the project/bin/benandjerrysapi.exe . Check the benandjerrysapi.cfg file for checking the ports.
+    -  Run the project benandjerrysapi/bin/benandjerrysapi.exe . Check the benandjerrysapi/bin/benandjerrysapi.cfg file for checking the ports.
 
 ### Installation Steps
 1. Open benandjerrysapi/swagger/swagger.yaml file in editor.swagger.io .
