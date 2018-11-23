@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/zalora_icecream/commonFramework/response"
+	"github.com/benandjerrysapi/commonFramework/response"
 )
 
 //Tester  Router that wraps other routers for Oauth2 authenticating

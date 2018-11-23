@@ -27,8 +27,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/rs/xhandler"
-	"github.com/zalora_icecream/commonFramework/external/golang.org/x/net/context"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/rs/xhandler"
+	"github.com/benandjerrysapi/commonFramework/external/golang.org/x/net/context"
 )
 
 // Options is a configuration container to setup the CORS middleware.

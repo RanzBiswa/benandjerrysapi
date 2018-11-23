@@ -3,7 +3,7 @@ package loggers
 import (
 	"strconv"
 
-	"github.com/zalora_icecream/commonFramework/setup"
+	"github.com/benandjerrysapi/commonFramework/setup"
 )
 
 //LogErr Used to model struct that gets written as log

@@ -1,7 +1,7 @@
 package loggers
 
 import (
-	_log "github.com/zalora_icecream/commonFramework/external/github.com/sirupsen/logrus"
+	_log "github.com/benandjerrysapi/commonFramework/external/github.com/sirupsen/logrus"
 )
 
 //APILog Models a log struct to be logged

@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zalora_icecream/commonFramework/external/golang.org/x/crypto/ssh/terminal"
+	"github.com/benandjerrysapi/commonFramework/external/golang.org/x/crypto/ssh/terminal"
 )
 
 const (

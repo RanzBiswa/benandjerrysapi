@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/zalora_icecream/resources/token"
+	"github.com/benandjerrysapi/resources/token"
 	"net/http"
 
-	"github.com/zalora_icecream/resources/icecreams"
+	"github.com/benandjerrysapi/resources/icecreams"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/robfig/config"
-	_logger "github.com/zalora_icecream/commonFramework/loggers"
-	"github.com/zalora_icecream/commonFramework/routers"
-	"github.com/zalora_icecream/commonFramework/setup"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/robfig/config"
+	_logger "github.com/benandjerrysapi/commonFramework/loggers"
+	"github.com/benandjerrysapi/commonFramework/routers"
+	"github.com/benandjerrysapi/commonFramework/setup"
 )
 
 var c *config.Config

@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/robfig/config"
-	"github.com/zalora_icecream/commonFramework/loggers"
-	"github.com/zalora_icecream/commonFramework/oauth2"
-	"github.com/zalora_icecream/commonFramework/setup"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/robfig/config"
+	"github.com/benandjerrysapi/commonFramework/loggers"
+	"github.com/benandjerrysapi/commonFramework/oauth2"
+	"github.com/benandjerrysapi/commonFramework/setup"
 )
 
 //Initialize initializes API configs and redis instance

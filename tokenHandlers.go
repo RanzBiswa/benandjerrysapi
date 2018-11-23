@@ -3,11 +3,11 @@ package main
 import (
 	"net/http"
 
-	"github.com/zalora_icecream/commonFramework/loggers"
-	"github.com/zalora_icecream/commonFramework/response"
-	"github.com/zalora_icecream/commonFramework/routers"
-	"github.com/zalora_icecream/commonFramework/setup"
-	"github.com/zalora_icecream/resources/icecreams"
+	"github.com/benandjerrysapi/commonFramework/loggers"
+	"github.com/benandjerrysapi/commonFramework/response"
+	"github.com/benandjerrysapi/commonFramework/routers"
+	"github.com/benandjerrysapi/commonFramework/setup"
+	"github.com/benandjerrysapi/resources/icecreams"
 )
 
 func init() {

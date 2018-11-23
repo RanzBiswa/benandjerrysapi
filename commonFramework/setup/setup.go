@@ -1,8 +1,8 @@
 package setup
 
 import (
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/robfig/config"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/robfig/config"
 )
 
 var (

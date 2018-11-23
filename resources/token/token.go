@@ -1,12 +1,11 @@
 package token
 
 import (
-	"fmt"
-	"github.com/zalora_icecream/commonFramework/clients"
-	"github.com/zalora_icecream/commonFramework/encryptdecrypt"
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/robfig/config"
-	m "github.com/zalora_icecream/models"
+	"github.com/benandjerrysapi/commonFramework/clients"
+	"github.com/benandjerrysapi/commonFramework/encryptdecrypt"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/robfig/config"
+	m "github.com/benandjerrysapi/models"
 	// "gopkg.in/mgo.v2/bson"
 )
 
@@ -26,10 +25,6 @@ func (tkn Token) GetToken(userID string, password string,
 	defer conn.Close()
 
 	var resp = &m.TokenResponse{}
-	//First Check the clients.json file.
-	//Read the clients.json file to
-	// Check if userId and password are present. if yes, Encrypt the same and return with Bearer encrypteddata
-
 	data := clients.Clients[userID]
 
 	if data.Secret == encryptdecrypt.EncodeToBase64(password) {
@@ -41,6 +36,5 @@ func (tkn Token) GetToken(userID string, password string,
 		resp.StatusMessage = "Wrong Credentials. Kindly contact administrator."
 		resp.StatusCode = 500
 	}
-	fmt.Printf(userID)
 	return resp, rErr
 }

@@ -17,7 +17,7 @@
 package terminal
 
 import (
-	"github.com/zalora_icecream/commonFramework/external/golang.org/x/sys/windows"
+	"github.com/benandjerrysapi/commonFramework/external/golang.org/x/sys/windows"
 )
 
 type State struct {

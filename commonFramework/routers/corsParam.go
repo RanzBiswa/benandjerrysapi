@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/zalora_icecream/commonFramework/response"
+	"github.com/benandjerrysapi/commonFramework/response"
 )
 
 //CorsParam sets cors related parameters' values

@@ -5,4 +5,6 @@ const (
 	CustomExposedHdrStatus string = "Forwarded-Status"
 	// CustomExposedHdrStatusMessage forwarded status message
 	CustomExposedHdrStatusMessage string = "Forwarded-Message"
+	// CustomExposedCreator forwarded status message
+	CustomExposedCreator string = "Created-By"
 )

@@ -1,10 +1,8 @@
 package icecreams
 
 import (
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/robfig/config"
-	m "github.com/zalora_icecream/models"
-	"github.com/zalora_icecream/resources/utilities"
+	m "github.com/benandjerrysapi/models"
+	"github.com/benandjerrysapi/resources/utilities"
 	// "gopkg.in/mgo.v2/bson"
 )
 
@@ -13,22 +11,18 @@ type IceCream struct{}
 
 // ReturnIceCreams retrieves ice cream details
 func (ba IceCream) ReturnIceCreams(
-	baReq m.IceCreamRequest,
-	p *redis.Pool,
-	c *config.Config) (*m.IceCreamResponse, error) {
+	baReq m.IceCreamRequest) (*m.IceCreamResponse, error) {
 
 	const method = "GetIceCreams"
 
 	var rErr error
 
-	conn := p.Get()
-	defer conn.Close()
 	var baRes = &m.IceCreamResponse{}
 
 	if baReq.ProductID != "" {
-		baRes = utilities.GetIceCreamByProductId(baReq)
+		baRes, rErr = utilities.GetIceCreamByProductID(baReq)
 	} else {
-		baRes = utilities.GetIceCreams()
+		baRes, rErr = utilities.GetIceCreams()
 	}
 	return baRes,
 		rErr
@@ -37,19 +31,15 @@ func (ba IceCream) ReturnIceCreams(
 
 // DestroyIceCreams deletes a ice cream based on product id
 func (ba IceCream) DestroyIceCreams(
-	baReq m.IceCreamRequest,
-	p *redis.Pool,
-	c *config.Config) (*m.IceCreamResponse, error) {
+	baReq m.IceCreamRequest) (*m.IceCreamResponse, error) {
 
 	const method = "GetIceCreams"
 
 	var rErr error
 
-	conn := p.Get()
-	defer conn.Close()
 	var baRes = &m.IceCreamResponse{}
 
-	baRes = utilities.DestroyIceCreams(baReq)
+	baRes, rErr = utilities.DestroyIceCreams(baReq)
 
 	return baRes,
 		rErr
@@ -58,13 +48,12 @@ func (ba IceCream) DestroyIceCreams(
 
 // InsertIceCream inserts the ice cream
 func (ba IceCream) InsertIceCream(
-	baReq m.IceCream,
-	p *redis.Pool, c *config.Config) (*m.IceCreamResponse, error) {
+	baReq m.IceCream) (*m.IceCreamResponse, error) {
 
 	var resp *m.IceCreamResponse
 
 	var rErr error
-	resp = utilities.InsertIceCream(baReq)
+	resp, rErr = utilities.InsertIceCream(baReq)
 
 	return resp,
 		rErr
@@ -73,13 +62,12 @@ func (ba IceCream) InsertIceCream(
 
 // UpdateIceCream updates the ice cream based on the product ID
 func (ba IceCream) UpdateIceCream(
-	baReq m.IceCream,
-	p *redis.Pool, c *config.Config) (*m.IceCreamResponse, error) {
+	baReq m.IceCream) (*m.IceCreamResponse, error) {
 
 	var resp *m.IceCreamResponse
 
 	var rErr error
-	resp = utilities.UpdateIceCream(baReq)
+	resp, rErr = utilities.UpdateIceCream(baReq)
 
 	return resp,
 		rErr
@@ -88,13 +76,12 @@ func (ba IceCream) UpdateIceCream(
 
 // SearchIceCreams searches the ice cream based on the product ID
 func (ba IceCream) SearchIceCreams(
-	q string,
-	p *redis.Pool, c *config.Config) (*m.IceCreamResponse, error) {
+	q string) (*m.IceCreamResponse, error) {
 
 	var resp *m.IceCreamResponse
 
 	var rErr error
-	resp = utilities.SearchIceCreams(q)
+	resp, rErr = utilities.SearchIceCreams(q)
 
 	return resp,
 		rErr

@@ -1,7 +1,7 @@
 package oauth2
 
 import (
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
 )
 
 var conn redis.Conn

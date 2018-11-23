@@ -4,7 +4,7 @@
 
 package terminal
 
-import "github.com/zalora_icecream/commonFramework/external/golang.org/x/sys/unix"
+import "github.com/benandjerrysapi/commonFramework/external/golang.org/x/sys/unix"
 
 const ioctlReadTermios = unix.TCGETS
 const ioctlWriteTermios = unix.TCSETS

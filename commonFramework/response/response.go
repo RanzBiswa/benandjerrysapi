@@ -87,3 +87,8 @@ func SetForwardedStatusMessageCustomHeader(w http.ResponseWriter, statusMsg stri
 	w.Header().Set(CustomExposedHdrStatusMessage, statusMsg)
 }
 
+
+//SetForwardedCreatorHeader sets created by custom header
+func SetForwardedCreatorHeader(w http.ResponseWriter, createdBy string) {
+	w.Header().Set(CustomExposedCreator, createdBy)
+}

@@ -3,12 +3,12 @@ package routers
 import (
 	"net/http"
 
-	"github.com/zalora_icecream/commonFramework/authenticators"
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/gorilla/mux"
-	"github.com/zalora_icecream/commonFramework/external/github.com/rs/cors"
-	"github.com/zalora_icecream/commonFramework/loggers"
-	"github.com/zalora_icecream/commonFramework/ssl"
+	"github.com/benandjerrysapi/commonFramework/authenticators"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/gorilla/mux"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/rs/cors"
+	"github.com/benandjerrysapi/commonFramework/loggers"
+	"github.com/benandjerrysapi/commonFramework/ssl"
 )
 
 //NewRouter  Mutex router for the application

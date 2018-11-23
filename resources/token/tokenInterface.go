@@ -1,9 +1,9 @@
 package token
 
 import (
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/robfig/config"
-	"github.com/zalora_icecream/models"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/robfig/config"
+	"github.com/benandjerrysapi/models"
 )
 
 //TokenInterface Defines methods for token

@@ -10,7 +10,7 @@ import (
 	"io"
 	"syscall"
 
-	"github.com/zalora_icecream/commonFramework/external/golang.org/x/sys/unix"
+	"github.com/benandjerrysapi/commonFramework/external/golang.org/x/sys/unix"
 )
 
 // State contains the state of a terminal.

@@ -9,10 +9,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/davecgh/go-spew/spew"
-	"github.com/zalora_icecream/commonFramework/external/github.com/pmezard/go-difflib/difflib"
-	"github.com/zalora_icecream/commonFramework/external/github.com/stretchr/objx"
-	"github.com/zalora_icecream/commonFramework/external/github.com/stretchr/testify/assert"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/davecgh/go-spew/spew"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/pmezard/go-difflib/difflib"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/stretchr/objx"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/stretchr/testify/assert"
 )
 
 // TestingT is an interface wrapper around *testing.T

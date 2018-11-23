@@ -2,9 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/benandjerrysapi" vcs="" />
     <mapping directory="$PROJECT_DIR$/commonFramework/delve" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/commonFramework/external/code.google.com/p/go-uuid" vcs="hg4idea" />
     <mapping directory="$PROJECT_DIR$/commonFramework/external/golang.org/x/tools" vcs="hg4idea" />
-    <mapping directory="$PROJECT_DIR$/icecreams_zalora" vcs="Git" />
   </component>
 </project>

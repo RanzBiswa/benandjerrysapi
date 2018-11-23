@@ -8,8 +8,8 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/stretchr/testify/assert"
-	"github.com/zalora_icecream/commonFramework/external/github.com/stretchr/testify/require"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/stretchr/testify/assert"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/stretchr/testify/require"
 )
 
 var allTestsFilter = func(_, _ string) (bool, error) { return true, nil }

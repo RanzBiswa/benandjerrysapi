@@ -7,14 +7,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/zalora_icecream/commonFramework/constant"
-	"github.com/zalora_icecream/commonFramework/external/github.com/davecgh/go-spew/spew"
-	"github.com/zalora_icecream/commonFramework/external/github.com/garyburd/redigo/redis"
-	"github.com/zalora_icecream/commonFramework/external/github.com/gorilla/context"
-	_log "github.com/zalora_icecream/commonFramework/external/github.com/sirupsen/logrus"
-	"github.com/zalora_icecream/commonFramework/redisKeys"
-	"github.com/zalora_icecream/commonFramework/request"
-	"github.com/zalora_icecream/commonFramework/setup"
+	"github.com/benandjerrysapi/commonFramework/constant"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/davecgh/go-spew/spew"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/garyburd/redigo/redis"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/gorilla/context"
+	_log "github.com/benandjerrysapi/commonFramework/external/github.com/sirupsen/logrus"
+	"github.com/benandjerrysapi/commonFramework/redisKeys"
+	"github.com/benandjerrysapi/commonFramework/request"
+	"github.com/benandjerrysapi/commonFramework/setup"
 )
 
 var (
@@ -118,13 +118,11 @@ func LogWarning(eventName,
 func LogData(eventName,
 	method string,
 	eventData interface{},
-	locale string,
 	r *http.Request) {
 	logEvent(data,
 		eventName,
 		method,
 		eventData,
-
 		r)
 }
 

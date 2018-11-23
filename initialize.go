@@ -3,14 +3,14 @@ package main
 import (
 	"log"
 
-	_apiInit "github.com/zalora_icecream/commonFramework/init"
-	"github.com/zalora_icecream/commonFramework/setup"
+	_apiInit "github.com/benandjerrysapi/commonFramework/init"
+	"github.com/benandjerrysapi/commonFramework/setup"
 )
 
 func initialize() {
 
 	var e error
-	s, e := _apiInit.Initialize("zalora.cfg",
+	s, e := _apiInit.Initialize("benandjerrysapi.cfg",
 		setup.IceCreamAPI)
 	if e != nil {
 		log.Fatal(e)

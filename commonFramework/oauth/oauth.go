@@ -3,11 +3,11 @@ package oauth
 import (
 	"errors"
 	"fmt"
-	"github.com/zalora_icecream/commonFramework/encryptdecrypt"
+	"github.com/benandjerrysapi/commonFramework/encryptdecrypt"
 	"net/http"
 	"strings"
 
-	"github.com/zalora_icecream/commonFramework/clients"
+	"github.com/benandjerrysapi/commonFramework/clients"
 )
 
 //AuthenticateToken Make sure there is a bearer token and that it is valid

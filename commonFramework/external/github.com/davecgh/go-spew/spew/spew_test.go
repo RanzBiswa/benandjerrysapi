@@ -23,7 +23,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/davecgh/go-spew/spew"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/davecgh/go-spew/spew"
 )
 
 // spewFunc is used to identify which public function of the spew package or

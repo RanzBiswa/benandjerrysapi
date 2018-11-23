@@ -7,14 +7,16 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/zalora_icecream/commonFramework/external/github.com/gorilla/mux"
-	"github.com/zalora_icecream/commonFramework/loggers"
-	"github.com/zalora_icecream/commonFramework/response"
-	"github.com/zalora_icecream/commonFramework/routers"
-	"github.com/zalora_icecream/commonFramework/setup"
-	"github.com/zalora_icecream/models"
-	icecreams "github.com/zalora_icecream/resources/icecreams"
+	"github.com/benandjerrysapi/commonFramework/external/github.com/gorilla/mux"
+	"github.com/benandjerrysapi/commonFramework/loggers"
+	"github.com/benandjerrysapi/commonFramework/response"
+	"github.com/benandjerrysapi/commonFramework/routers"
+	"github.com/benandjerrysapi/commonFramework/setup"
+	"github.com/benandjerrysapi/models"
+	icecreams "github.com/benandjerrysapi/resources/icecreams"
 )
+
+var createdBy = "Biswa Ranjan Behera, India"
 
 func init() {
 
@@ -118,16 +120,23 @@ func (a APIHandler) ReturnIceCreams(w http.ResponseWriter, r *http.Request, prod
 		return
 	}
 
-	if icecreamRes, err := a.rsrc.ReturnIceCreams(req, pool, c); err != nil || icecreamRes == nil {
+	if icecreamRes, err := a.rsrc.ReturnIceCreams(req); err != nil || icecreamRes == nil {
 		if err != nil {
 			loggers.LogError(setup.EvtAPIHandlerError,
 				"GetIceCreams", err.Error(), r)
 		}
+		response.SetForwardedCreatorHeader(w, createdBy)
+		if icecreamRes.StatusCode == 404 {
+			response.WriteResponse(w, r, http.StatusNotFound, response.ErrorResponse{Code: http.StatusNotFound, Text: icecreamRes.StatusMessage})
+			return
+		}
+
 		response.WriteResponse(w, r, http.StatusInternalServerError, response.ErrorResponse{Code: http.StatusInternalServerError, Text: err.Error()})
 
 	} else {
 		response.SetForwardedStatusCustomHeader(w, strconv.Itoa(icecreamRes.StatusCode))
 		response.SetForwardedStatusMessageCustomHeader(w, icecreamRes.StatusMessage)
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusOK, icecreamRes)
 		return
 	}
@@ -141,7 +150,7 @@ func (a APIHandler) DestroyIceCream(w http.ResponseWriter, r *http.Request) {
 
 	req := models.IceCreamRequest{
 		ProductID: productID,
-		IsDetail:  false,
+		IsDetail:  true,
 	}
 
 	msgs := req.Validate()
@@ -151,22 +160,24 @@ func (a APIHandler) DestroyIceCream(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if icecreamRes, err := a.rsrc.DestroyIceCreams(req, pool, c); err != nil || icecreamRes == nil {
+	if icecreamRes, err := a.rsrc.DestroyIceCreams(req); err != nil || icecreamRes == nil {
 		if err != nil {
 			loggers.LogError(setup.EvtAPIHandlerError,
 				"DestroyIceCreams", err.Error(), r)
 		}
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusInternalServerError, response.ErrorResponse{Code: http.StatusInternalServerError, Text: err.Error()})
 
 	} else {
 		response.SetForwardedStatusCustomHeader(w, strconv.Itoa(icecreamRes.StatusCode))
 		response.SetForwardedStatusMessageCustomHeader(w, icecreamRes.StatusMessage)
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusOK, icecreamRes)
 		return
 	}
 }
 
-// InsertIceCream Used to update ice creams
+// InsertIceCream Used to inserts ice creams
 func (a APIHandler) InsertIceCream(w http.ResponseWriter, r *http.Request) {
 	var err error
 
@@ -196,17 +207,18 @@ func (a APIHandler) InsertIceCream(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if res, err := a.rsrc.InsertIceCream(insertReq, pool, c); err != nil || res == nil {
+	if res, err := a.rsrc.InsertIceCream(insertReq); err != nil || res == nil {
 		if err != nil {
 			loggers.LogError(setup.EvtAPIHandlerError,
 				"InsertIceCream", err.Error(), r)
 		}
-
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusInternalServerError, response.ErrorResponse{Code: http.StatusInternalServerError, Text: err.Error()})
 
 	} else {
 		response.SetForwardedStatusCustomHeader(w, strconv.Itoa(res.StatusCode))
 		response.SetForwardedStatusMessageCustomHeader(w, res.StatusMessage)
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusOK, res)
 	}
 }
@@ -246,7 +258,8 @@ func (a APIHandler) UpdateIceCreams(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if res, err := a.rsrc.UpdateIceCream(updateReq, pool, c); err != nil || res == nil {
+	if res, err := a.rsrc.UpdateIceCream(updateReq); err != nil || res == nil {
+		response.SetForwardedCreatorHeader(w, createdBy)
 		if err != nil {
 			loggers.LogError(setup.EvtAPIHandlerError,
 				"UpdateIceCreams", err.Error(), r)
@@ -257,6 +270,7 @@ func (a APIHandler) UpdateIceCreams(w http.ResponseWriter, r *http.Request) {
 	} else {
 		response.SetForwardedStatusCustomHeader(w, strconv.Itoa(res.StatusCode))
 		response.SetForwardedStatusMessageCustomHeader(w, res.StatusMessage)
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusOK, res)
 	}
 }
@@ -266,16 +280,18 @@ func (a APIHandler) SearchIceCreams(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	searchvalue := vars["searchvalue"]
-	if icecreamRes, err := a.rsrc.SearchIceCreams(searchvalue, pool, c); err != nil || icecreamRes == nil {
+	if icecreamRes, err := a.rsrc.SearchIceCreams(searchvalue); err != nil || icecreamRes == nil {
 		if err != nil {
 			loggers.LogError(setup.EvtAPIHandlerError,
 				"SearchIceCreams", err.Error(), r)
 		}
+		response.SetForwardedCreatorHeader(w, createdBy)
 		response.WriteResponse(w, r, http.StatusInternalServerError, response.ErrorResponse{Code: http.StatusInternalServerError, Text: err.Error()})
 
 	} else {
 		response.SetForwardedStatusCustomHeader(w, strconv.Itoa(icecreamRes.StatusCode))
 		response.SetForwardedStatusMessageCustomHeader(w, icecreamRes.StatusMessage)
+		response.SetForwardedCreatorHeader(w, createdBy)
 		if icecreamRes.StatusCode == 404 {
 			response.WriteResponse(w, r, http.StatusNotFound, response.ErrorResponse{Code: http.StatusNotFound, Text: icecreamRes.StatusMessage})
 			return

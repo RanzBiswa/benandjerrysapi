@@ -9,11 +9,6 @@ type Client struct {
 	Active      bool   `json:"active"`
 }
 
-//expires in 29 days = 29 days * 24 hours/day * 60 minutes/hour * 60 seconds/minute = 2592000 seconds
-//anything greater than 29 days is taken as a unix timestamp... switch to that after 30 days
-
-//HitsPerMinute of -1 means no limit
-//expiry of -1 means never expire
 
 //Clients A collection of authorized users of the API
 var Clients = map[string]Client{

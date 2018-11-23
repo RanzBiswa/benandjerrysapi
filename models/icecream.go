@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/zalora_icecream/commonFramework/response"
+	"github.com/benandjerrysapi/commonFramework/response"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -41,7 +41,7 @@ type IceCreamResponse struct {
 
 // IceCream models the ice cream
 type IceCream struct {
-	ObjectID              bson.ObjectId `json:"-" bson:"_id"`
+	ObjectID              bson.ObjectId `bson:"_id"`
 	Name                  string        `json:"name,omitempty" bson:"name"`
 	ImageClosed           string        `json:"image_closed,omitempty" bson:"image_closed"`
 	ImageOpen             string        `json:"image_open,omitempty" bson:"image_open"`
@@ -63,13 +63,59 @@ func (req IceCream) Validate() response.Validations {
 	// Validate ProductID. assuming max length is 4
 
 	iceCrmValidator := IceCreamValidator{
-		ProductID:         req.ProductID,
-		ProductIDRequired: true,
+		ProductID:             req.ProductID,
+		ProductIDRequired:     true,
+		Name:                  req.Name,
+		ImageClosed:           req.ImageClosed,
+		ImageOpen:             req.ImageOpen,
+		Description:           req.Description,
+		Story:                 req.Story,
+		SourcingValues:        req.SourcingValues,
+		Ingredients:           req.Ingredients,
+		AllergyInfo:           req.AllergyInfo,
+		DietaryCertifications: req.DietaryCertifications,
 	}
 
 	if msg = iceCrmValidator.ValidateProductID(); len(msg) > 0 {
 		msgs = append(msgs, response.Validation{Error: msg})
 	}
+
+	if msg = iceCrmValidator.ValidateName(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+	}
+
+	if msg = iceCrmValidator.ValidateImageClosed(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+	}
+	if msg = iceCrmValidator.ValidateImageOpen(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+	if msg = iceCrmValidator.ValidateDescription(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+	if msg = iceCrmValidator.ValidateStory(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+	if msg = iceCrmValidator.ValidateSourcingValues(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+	if msg = iceCrmValidator.ValidateIngredients(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+	if msg = iceCrmValidator.ValidateAllergyInfo(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+	if msg = iceCrmValidator.ValidateDietaryCertifications(); len(msg) > 0 {
+		msgs = append(msgs, response.Validation{Error: msg})
+
+	}
+
 	return msgs
 }
 
